@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import nz.ac.auckland.se754.CalculatorPage;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,9 +18,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CalculatorStepDefinitions {
 
     private WebDriver driver;
+    private CalculatorPage page;
     @Before
     public void setup(){
         driver = DriverSingleton.getInstance().getDriver();
+         page = new CalculatorPage(driver);
     }
 
    @AfterStep
@@ -44,18 +47,18 @@ public class CalculatorStepDefinitions {
 
     @Given("I enter {int} into the calculator")
     public void i_enter_into_the_calculator(Integer int1) {
-        driver.findElement(By.id("number1Field")).sendKeys(String.valueOf(int1));
+        page.enterFirstNumber(int1);
     }
 
     @Given("I also enter {int} into the calculator")
     public void i_also_enter_into_the_calculator(Integer int1) {
-        driver.findElement(By.xpath("/html/body/section/div/div/div/form[2]/div[2]/div[2]/input")).sendKeys(String.valueOf(int1));
+        page.enterSecondNumber(int1);
 
     }
 
     @When("I press add")
     public void i_press_add() {
-        driver.findElement(By.cssSelector("#calculateButton")).click();
+        page.clickCalculate();
     }
 
     @Then("the result should be {int}")
