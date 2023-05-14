@@ -6,12 +6,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import nz.ac.auckland.se754.CalculatorPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,11 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CalculatorStepDefinitions {
 
     private WebDriver driver;
-
     @Before
     public void setup(){
         driver = DriverSingleton.getInstance().getDriver();
-
     }
 
    @AfterStep
@@ -38,7 +34,7 @@ public class CalculatorStepDefinitions {
 
     @After
     public void tearDown() {
-        //driver.close();
+       // driver.close();
     }
 
     @Given("I open the calculator page")
